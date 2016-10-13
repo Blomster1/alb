@@ -10,6 +10,9 @@ wp-content/uploads/
 wp-content/themes/twentyfifteen
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
+wp-includes/
+
+.idea/
 
 /.htaccess
 /license.txt
