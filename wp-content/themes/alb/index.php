@@ -14,48 +14,40 @@
  * @since Twenty Fifteen 1.0
  */
 
+$notreclub = get_post(16);
+$decouvrir = get_post(4);
+$activite = get_post(19);
+
+
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<?php if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-			<?php endif; ?>
-
-			<?php
-			// Start the loop.
-			while ( have_posts() ) : the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'content', get_post_format() );
-
-			// End the loop.
-			endwhile;
-
-			// Previous/next page navigation.
-			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'twentyfifteen' ),
-				'next_text'          => __( 'Next page', 'twentyfifteen' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyfifteen' ) . ' </span>',
-			) );
-
-		// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'content', 'none' );
-
-		endif;
-		?>
-
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
-
+	<!-- particles.js container -->
+<section id="slider">
+</section>
+<section id="items-container">
+	<div class="container">
+		<div class="col-sm-offset-1 col-sm-3 text-center item">
+			<img class="col-sm-12 no-padding " src="<?= get_the_post_thumbnail_url($notreclub->ID) ?>" alt="">
+			<h1><a href="<?= get_permalink($notreclub->ID) ?>"><?= $notreclub->post_title ?></a></h1>
+			<p><?= get_field('excerpt',$notreclub->ID) ?></p>
+			<a class="btn btn-primary" href="<?= get_permalink($notreclub->ID) ?>">En savoir plus</a>
+		</div>
+		<div class="col-sm-3 text-center item">
+			<img class="col-sm-12 no-padding " src="<?= get_the_post_thumbnail_url($decouvrir->ID) ?>" alt="">
+			<h1><a href="<?= get_permalink($decouvrir->ID) ?>"><?= $decouvrir->post_title ?></a></h1>
+			<p><?= get_field('excerpt',$decouvrir->ID) ?></p>
+			<a class="btn btn-primary" href="<?= get_permalink($decouvrir->ID) ?>">En savoir plus</a>
+		</div>
+		<div class="col-sm-3 text-center item">
+			<img class="col-sm-12 no-padding " src="<?= get_the_post_thumbnail_url($activite->ID) ?>" alt="">
+			<h1><a href="<?= get_permalink($activite->ID) ?>"><?= $activite->post_title ?></a></h1>
+			<p><?= get_field('excerpt',$activite->ID) ?></p>
+			<a class="btn btn-primary" href="<?= get_permalink($activite->ID) ?>">En savoir plus</a>
+		</div>
+	</div>
+</section>
+<section id="map">
+	<?= do_shortcode('[Google_Maps_WD id=1 map=1]') ?>
+</section>
+<section id="inscription"></section>
 <?php get_footer(); ?>

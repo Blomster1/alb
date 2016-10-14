@@ -219,6 +219,17 @@ function twentyfifteen_fonts_url() {
 }
 endif;
 
+// Register Navigation Menus
+function custom_navigation_menus() {
+
+    $locations = array(
+        'Main' => __( 'main top menu', 'text_domain' ),
+    );
+    register_nav_menus( $locations );
+
+}
+add_action( 'init', 'custom_navigation_menus' );
+
 /**
  * JavaScript Detection.
  *
@@ -248,6 +259,7 @@ function twentyfifteen_scripts() {
 
 	// Load the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'twentyfifteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfifteen-style' ), '20141010' );
+    wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array( 'twentyfifteen-style' ), '20141010' );
 	wp_style_add_data( 'twentyfifteen-ie', 'conditional', 'lt IE 9' );
 
 	// Load the Internet Explorer 7 specific stylesheet.
